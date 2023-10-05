@@ -15,16 +15,32 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@portabletext/react": "^3.0.9",
     "babel-plugin-styled-components": "^2.1.4",
     "gatsby": "^5.12.4",
     "gatsby-plugin-image": "^3.12.0",
+    "gatsby-plugin-robots-txt": "^1.8.0",
+    "gatsby-plugin-sanity-image": "^0.13.4",
     "gatsby-plugin-sharp": "^5.12.0",
     "gatsby-plugin-sitemap": "^6.12.0",
     "gatsby-plugin-styled-components": "^6.12.0",
     "gatsby-source-sanity": "^7.8.1",
     "gatsby-transformer-sharp": "^5.12.0",
+    "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "styled-components": "^6.0.8"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-wesbos": "^3.2.3",
+    "prettier": "^2.8.8",
+    "typescript": "^4.9.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ]
   }
 }

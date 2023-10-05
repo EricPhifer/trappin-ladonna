@@ -1,176 +1,335 @@
-import * as React from "react"
+import * as React from 'react'
+import styled from 'styled-components'
+import Seo from '../components/Seo'
+// Hero
+import About from '../components/About'
+import Hero from '../components/Hero'
+import Location from '../components/Location'
+import Map from '../components/Map'
+import Plan from '../components/Plan'
 
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
+import Testimonials from '../components/Testimonials'
+// Contact form
+import useContact from '../utils/useContact'
+import useForm from '../utils/useForm'
+import Services from '../components/Services'
+import Gallery from '../components/Gallery'
+import HeroesFoot from '../components/HeroesFoot'
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
+const HeroStyles = styled.div`
+  display: block;
+  padding-top: 10rem;
+  margin-top: -10rem;
+  height: calc(100vh - 7rem);
+  position: relative;
+  top: 7rem;
+  z-index: 10;
+`
 
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
+const Main = styled.main`
+  width: 100vw;
+  height: 100%;
+  padding-bottom: 12rem;
+  @media only screen and (max-width: 500px) {
+    width: 98vw;
+  }
+  @media only screen and (max-height: 600px) {
+    width: 96vw;
+  }
+`
 
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
+const LightBlock = styled.section`
+  width: 100%;
+  min-height: 25rem;
+  padding: 5rem 2rem;
+  color: var(--black);
+  p {
+    color: var(--black);
+  }
+`
 
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
+const DarkBlock = styled.section`
+  width: 100%;
+  min-height: 50rem;
+  padding: 5rem 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--white);
+  #nav-dots {
+    background: var(--white);
+    &:hover {
+      background: var(--blue);
+    }
+    &:active {
+      border: 0.1rem dotted var(--blue);
+    }
+    &:focus {
+      background: var(--blue);
+    }
+    &[aria-current='page'] {
+      background: var(--blue);
+    }
+  }
+  input,
+  textarea {
+    color: var(--white);
+  }
+`
 
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
+const WhiteSpace = styled.div`
+  width: 80%;
+  max-width: 98rem;
+  margin: 10rem auto;
+  @media only screen and (max-width: 500px) {
+    width: 100%;
+    margin: 0;
+  }
+`
 
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/getting-started/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
+const H2 = styled.h2`
+  display: block;
+  padding-top: 10rem;
+  margin-top: -10rem;
+  font-size: 5rem;
+  font-variant: small-caps;
+  @media only screen and (max-width: 330px) {
+    font-size: 4rem;
+  }
+`
 
-const IndexPage = () => {
+const HR = styled.hr`
+  border: 0.5rem solid var(--orange);
+`
+
+const Form = styled.form`
+  max-width: 80rem;
+  width: 100%;
+  margin: 2rem auto;
+  transition: 0.5s all ease;
+  display: flex;
+  flex-flow: column nowrap;
+  label {
+    display: none;
+  }
+  input,
+  textarea {
+    font-size: 1.75rem;
+  }
+  legend {
+    width: 98%;
+    font-size: 5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  button {
+    align-self: end;
+  }
+`
+
+const InlineField = styled.fieldset`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  gap: 0.5rem;
+  border: none;
+  margin-bottom: 2rem;
+  input {
+    padding: 1rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-bottom: 0.2rem inset var(--gray);
+    background: transparent;
+  }
+  @media only screen and (max-width: 900px) {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  @media only screen and (max-height: 750px) {
+    margin-bottom: 1rem;
+    input {
+      font-size: 1.25rem;
+    }
+    a,
+    button {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+`
+
+const FullField = styled.fieldset`
+  display: flex;
+  justify-content: center;
+  border: none;
+  input {
+    width: 100%;
+    padding: 1rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-bottom: 0.2rem inset var(--gray);
+    background: transparent;
+  }
+  textarea {
+    width: 100%;
+    margin-left: 0.5rem;
+    padding: 1rem;
+    border: none;
+    border-bottom: 0.2rem inset var(--gray);
+    background: transparent;
+  }
+`
+
+const Submit = styled.button`
+  width: 20rem;
+  margin-bottom: 5rem;
+  padding: 1.5rem;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 1rem;
+  font-size: 1.85rem;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--white);
+    border: 0.2rem solid var(--blue);
+    color: var(--blue);
+  }
+  &:focus {
+    border: 0.2rem dotted var(--white);
+  }
+  @media only screen and (max-width: 900px) {
+    margin-bottom: 2rem;
+  }
+`
+
+export default function IndexPage() {
+  const { values, updateValue } = useForm({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
+  const { contact, error, loading, errMessage, submitContact } = useContact({
+    values,
+  })
+  console.log(contact, error, loading, submitContact)
+  if (errMessage) {
+    return <p>{errMessage}</p>
+  }
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! 🎉🎉🎉</span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time. 😎
-      </p>
-      <ul style={listStyles}>
-        <li style={docLinkStyle}>
-          <a
-            style={linkStyle}
-            href={`${docLink.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-          >
-            {docLink.text}
-          </a>
-        </li>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-              >
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
+    <>
+      <HeroStyles id="top">
+        <Hero />
+        <HeroesFoot />
+      </HeroStyles>
+      <Main>
+        <DarkBlock id="services">
+          <WhiteSpace>
+            <Services />
+          </WhiteSpace>
+        </DarkBlock>
+        <LightBlock>
+          <WhiteSpace>
+            <Plan />
+          </WhiteSpace>
+        </LightBlock>
+        <DarkBlock>
+          <WhiteSpace>
+            <Gallery />
+          </WhiteSpace>
+        </DarkBlock>
+        <LightBlock>
+          <WhiteSpace>
+            <H2 id="about">About</H2>
+            <HR />
+            <About />
+          </WhiteSpace>
+        </LightBlock>
+        <DarkBlock>
+          <WhiteSpace>
+            <H2 id="testimonials">Testimonials</H2>
+            <HR />
+            <Testimonials />
+          </WhiteSpace>
+        </DarkBlock>
+        <LightBlock>
+          <WhiteSpace>
+            <H2 id="contact">Contact Us</H2>
+            <HR />
+            <Form
+              method="post"
+              netlify-honeypot="bot-field"
+              data-netlify="true"
+              name="standard-contact"
+            >
+              <input type="hidden" name="bot-field" />
+              <input type="hidden" name="form-name" value="contact" />
+              <FullField className="nameEmail">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={values.name}
+                  onChange={updateValue}
+                  placeholder="Name"
+                  className="required"
+                />
+              </FullField>
+              <InlineField className="emailPhone">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  value={values.email}
+                  onChange={updateValue}
+                  placeholder="Email"
+                  className="required"
+                />
+                <label htmlFor="phone">Phone</label>
+                <input
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  value={values.phone}
+                  onChange={updateValue}
+                  placeholder="Phone"
+                  className="required"
+                />
+              </InlineField>
+              <FullField className="message">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  value={values.message}
+                  onChange={updateValue}
+                  rows="7"
+                  placeholder="What is your #1 need?"
+                  className="required"
+                />
+              </FullField>
+              <Submit type="submit" value="Submit">
+                Submit
+              </Submit>
+            </Form>
+          </WhiteSpace>
+        </LightBlock>
+        <DarkBlock>
+          <WhiteSpace>
+            <H2 id="location">Location</H2>
+            <HR />
+            <Location />
+            <Map />
+          </WhiteSpace>
+        </DarkBlock>
+      </Main>
+    </>
   )
 }
 
-export default IndexPage
-
-export const Head = () => <title>Home Page</title>
+/**
+ * Head export to define metadata for the page
+ *
+ * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
+ */
+export const Head = () => <Seo title="Home" />
