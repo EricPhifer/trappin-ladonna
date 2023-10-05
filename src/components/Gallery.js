@@ -11,31 +11,21 @@ const Section = styled.section`
 `
 
 const Logos = styled.ol`
+  width: 80rem;
   max-width: 80rem;
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-flow: row wrap;
+  gap: 1rem;
 `
 
 const Logo = styled.li`
-  width: 100%;
   max-height: 25rem;
-`
-
-const Grid = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(auto, 1fr));
-  justify-items: center;
-  @media only screen and (max-width: 500px) {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-  }
 `
 
 const Image = styled.a`
   img {
-    padding: 0 2rem;
-    mix-blend-mode: plus-lighter;
   }
 `
 
@@ -52,6 +42,7 @@ export default function Gallery() {
           image {
             asset {
               id
+              publicUrl
             }
             ...ImageWithPreview
           }
@@ -62,26 +53,28 @@ export default function Gallery() {
   const { nodes } = gallery
   return (
     <Section id="carousels-logo" aria-label="Logo Gallery">
-      <Grid>
+      <Logos className="logos">
         {nodes.map((node, index) => (
-          <Logos className="logos" key={node.id}>
-            <Logo className="logo" id={`#logo[${index}]`}>
-              <Image href={node.link} rel="noopener noreferrer" target="_blank">
-                <SanityImage
-                  {...node.image}
-                  alt={node.alt}
-                  style={{
-                    width: '30rem',
-                    height: '30rem',
-                    objectFit: 'contain',
-                    auto: 'format',
-                  }}
-                />
-              </Image>
-            </Logo>
-          </Logos>
+          <Logo className="logo" id={`#logo[${index}]`} key={node.id}>
+            <Image
+              href={node.image.asset.publicUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <SanityImage
+                {...node.image}
+                alt={node.alt}
+                style={{
+                  width: '25rem',
+                  height: '25rem',
+                  objectFit: 'cover',
+                  auto: 'format',
+                }}
+              />
+            </Image>
+          </Logo>
         ))}
-      </Grid>
+      </Logos>
     </Section>
   )
 }

@@ -304,7 +304,7 @@ export default function IndexPage() {
                   value={values.message}
                   onChange={updateValue}
                   rows="7"
-                  placeholder="What is your #1 need?"
+                  placeholder="What can I trap fer ya today?"
                   className="required"
                 />
               </FullField>
