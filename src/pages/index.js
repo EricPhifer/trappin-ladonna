@@ -258,7 +258,7 @@ export default function IndexPage() {
               method="post"
               netlify-honeypot="bot-field"
               data-netlify="true"
-              name="standard-contact"
+              name="contact"
             >
               <input type="hidden" name="bot-field" />
               <input type="hidden" name="form-name" value="contact" />
