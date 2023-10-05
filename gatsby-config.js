@@ -28,5 +28,13 @@ module.exports = {
         dataset: 'production',
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://trappinladonna.netlify.app',
+        sitemap: 'https://trappinladonna.netlify.app/sitemap/sitemap-index.xml',
+        policy: [{ userAgent: '*', disallow: '*' }],
+      },
+    },
   ],
 }
