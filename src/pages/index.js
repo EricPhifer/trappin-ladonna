@@ -29,7 +29,7 @@ const HeroStyles = styled.div`
 const Main = styled.main`
   width: 100vw;
   height: 100%;
-  padding-bottom: 12rem;
+  padding: 12rem 0;
   @media only screen and (max-width: 500px) {
     width: 98vw;
   }
