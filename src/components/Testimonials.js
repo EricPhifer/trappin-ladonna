@@ -151,7 +151,7 @@ const Image = styled.div`
 `
 
 const ParaContainer = styled.div`
-  max-width: 94%;
+  max-width: calc(100% - 10rem);
   p {
     padding-bottom: 0.75rem;
   }
