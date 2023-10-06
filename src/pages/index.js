@@ -48,24 +48,36 @@ const DarkBlock = styled.section`
   padding: 5rem 2rem;
   background-color: rgba(0, 0, 0, 0.8);
   color: var(--white);
-  #nav-dots {
-    background: var(--white);
-    &:hover {
-      background: var(--blue);
-    }
-    &:active {
-      border: 0.1rem dotted var(--blue);
-    }
-    &:focus {
-      background: var(--blue);
-    }
-    &[aria-current='page'] {
-      background: var(--blue);
-    }
-  }
   input,
   textarea {
     color: var(--white);
+  }
+  a {
+    color: var(--white);
+    text-decoration: underline;
+    &:hover {
+      color: #111;
+    }
+  }
+  #nav-dots {
+    color: var(--black);
+    background-color: var(--white);
+    text-decoration: none;
+    &:hover {
+      color: var(--white);
+      background-color: var(--blue);
+    }
+    &:active {
+      border: 0.1rem dotted var(--blue);
+      color: var(--white);
+    }
+    &:focus {
+      background-color: var(--blue);
+      color: var(--white);
+    }
+    &[aria-current='page'] {
+      background-color: var(--blue);
+    }
   }
 `
 

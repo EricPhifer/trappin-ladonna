@@ -181,7 +181,7 @@ const MenuContainer = styled.div`
 const MobileNav = styled.nav`
   width: 50vw;
   height: 100%;
-  background-color: var(--tan);
+  background-color: var(--black);
   position: relative;
   display: flex;
   flex-flow: column nowrap;
@@ -322,10 +322,10 @@ export default function Navigation() {
                 <div />
               )}
             </Img>
-            <MenuToggle htmlFor="menu">
+            <MenuToggle htmlFor="hamburger-menu">
               <MenuInput
                 type="checkbox"
-                id="menu"
+                id="hamburger-menu"
                 checked={checked}
                 onClick={() => {
                   setChecked(old => !old)

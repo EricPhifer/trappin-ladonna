@@ -60,15 +60,15 @@ const Review = styled.li`
 `
 
 const Nav = styled(Link)`
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 6.75rem;
+  height: 2.75rem;
   margin: 0.25rem 0.75rem 0.5rem 0;
   padding: 0.75rem;
   display: inline-flex;
   position: relative;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 5rem;
   background: var(--black);
   color: var(--white);
   text-decoration: none;
@@ -151,10 +151,12 @@ const Image = styled.div`
 `
 
 const ParaContainer = styled.div`
-  max-width: 80%;
-  padding-left: 3rem;
+  max-width: 94%;
   p {
     padding-bottom: 0.75rem;
+  }
+  @media only screen and (min-height: 501px) {
+    padding-left: 3rem;
   }
 `
 
@@ -218,7 +220,7 @@ export default function Testimonials() {
         <div className="navContainer">
           {nodes.map((node, index) => (
             <Nav to={`/#testimonial${index}`} key={node.id} id="nav-dots">
-              {index}
+              {node.name}
             </Nav>
           ))}
         </div>
