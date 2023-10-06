@@ -10,9 +10,6 @@ const Section = styled.section`
   z-index: 0;
   img {
     position: absolute;
-    @media only screen and (max-height: 400px) {
-      top: -5rem;
-    }
   }
   // Mobile view
   @media only screen and (max-width: 500px) {
