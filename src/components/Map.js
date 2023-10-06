@@ -32,6 +32,7 @@ export default function Map() {
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
+        title="location-map"
       />
     </Section>
   )

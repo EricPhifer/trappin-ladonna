@@ -25,7 +25,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column wrap;
-  #cta {
+  .cta {
     justify-self: end;
     align-self: end;
   }

@@ -135,7 +135,7 @@ const Bottom = styled.div`
   text-align: right;
 `
 
-const H4 = styled.h4`
+const H3 = styled.h3`
   font-size: 1.5rem;
   &::before {
     content: '- ';
@@ -209,7 +209,7 @@ export default function Testimonials() {
                   </ParaContainer>
                 </Top>
                 <Bottom>
-                  <H4>{node.name}</H4>
+                  <H3>{node.name}</H3>
                 </Bottom>
               </Content>
             </Review>
@@ -217,7 +217,9 @@ export default function Testimonials() {
         </Reviews>
         <div className="navContainer">
           {nodes.map((node, index) => (
-            <Nav to={`/#testimonial${index}`} key={node.id} id="nav-dots" />
+            <Nav to={`/#testimonial${index}`} key={node.id} id="nav-dots">
+              {index}
+            </Nav>
           ))}
         </div>
       </Slider>

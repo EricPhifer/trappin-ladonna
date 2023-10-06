@@ -24,7 +24,7 @@ const Buttonesque = styled(Link)`
 
 export default function Cta() {
   return (
-    <Buttonesque to="/#contact" id="cta">
+    <Buttonesque to="/#contact" className="cta">
       Contact Now <PiCaretRightBold />
     </Buttonesque>
   )

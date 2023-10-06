@@ -322,9 +322,10 @@ export default function Navigation() {
                 <div />
               )}
             </Img>
-            <MenuToggle>
+            <MenuToggle htmlFor="menu">
               <MenuInput
                 type="checkbox"
+                id="menu"
                 checked={checked}
                 onClick={() => {
                   setChecked(old => !old)
