@@ -58,6 +58,7 @@ export default function Gallery() {
           <Logo className="logo" id={`#logo[${index}]`} key={node.id}>
             <Image
               href={node.image.asset.publicUrl}
+              title={node.alt}
               rel="noopener noreferrer"
               target="_blank"
             >
