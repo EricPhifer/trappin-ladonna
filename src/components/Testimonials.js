@@ -60,8 +60,8 @@ const Review = styled.li`
 `
 
 const Nav = styled(Link)`
-  width: 6.75rem;
-  height: 2.75rem;
+  width: 12.75rem;
+  height: 4.75rem;
   margin: 0.25rem 0.75rem 0.5rem 0;
   padding: 0.75rem;
   display: inline-flex;
