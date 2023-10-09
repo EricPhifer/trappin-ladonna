@@ -5,17 +5,23 @@ import SanityImage from 'gatsby-plugin-sanity-image'
 import Cta from './Cta'
 
 const Header = styled.header`
+  width: 100%;
   height: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 0;
   // optional
   background-image: linear-gradient(
     to bottom,
     var(--white),
-    var(--gray),
+    orange,
     var(--black)
   );
   img {
+    max-width: 60rem;
+    max-height: 70rem;
     position: absolute;
     @media only screen and (max-height: 400px) {
       top: -5rem;
