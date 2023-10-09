@@ -132,8 +132,6 @@ export default function StoryHero() {
               {...node.image}
               alt={node.alt}
               style={{
-                width: '100%',
-                height: '100%',
                 backgroundImage: 'fixed',
                 objectFit: 'cover',
                 auto: 'format',
