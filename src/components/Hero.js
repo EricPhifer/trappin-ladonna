@@ -22,9 +22,8 @@ const Header = styled.header`
   );
   img {
     max-width: 100%;
-    max-height: 70rem;
+    max-height: 100%;
     position: absolute;
-    top: 15%;
     @media only screen and (max-width: 750px) {
       max-width: 100%;
       max-height: 100%;
